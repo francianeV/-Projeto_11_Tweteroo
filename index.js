@@ -1,11 +1,18 @@
+
 import express from 'express';
 import cors from 'cors';
 
-const app = express(); 
+const app = express();
+app.use(cors()); 
+app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send('Hello World');
-    
+const user = [{username: "teste", 
+              avatar: "https://img.freepik.com/fotos-gratis/3d-rendem-de-uma-mesa-de-madeira-com-uma-imagem-defocussed-de-um-barco-em-um-lago_1048-3432.jpg?w=2000"}];
+
+app.post("/sign-up", (req, res) => {
+    user.push(req.body);
+    res.send("OK");            
 });
-
+            
 app.listen(5000);
+
