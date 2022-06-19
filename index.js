@@ -6,22 +6,39 @@ const app = express();
 app.use(cors()); 
 app.use(express.json());
 
-const user = [{username: "teste", 
-              avatar: "https://img.freepik.com/fotos-gratis/3d-rendem-de-uma-mesa-de-madeira-com-uma-imagem-defocussed-de-um-barco-em-um-lago_1048-3432.jpg?w=2000"}];
+const user = [{username:'Vovó Juju', 
+              avatar:'https://pbs.twimg.com/media/FEfsN-aWYAUt3_H.jpg'}];
 
 
-const tweets = [{username: "teste"},
-                {tweet:"só testanto"}]
+const tweets = [{username: "Vovó Juju",
+                tweet:"Abacate é tudo de bom 🥑"}]
 
 app.post("/sign-up", (req, res) => {
     user.push(req.body);
     res.send("OK");            
 });
 
+app.get("/sign-up", (req, res) => {
+    res.send(user);
+})
+
 app.post("/tweets", (req, res) => {
-    tweets.push(req.body);
+    const name = req.body.username;
+    let currentUser = user.find(e => e.username === name);
+    tweets.push({
+        username: name,
+        avatar: currentUser.avatar,
+        tweet: req.body.tweet
+    })
     res.send("OK");
 });
+
+
+app.get('/tweets', (req, res) => {
+    const recentTweets = tweets.slice(-10);
+    res.send(recentTweets);
+});
+
             
 app.listen(5000);
 
