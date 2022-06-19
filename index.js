@@ -1,4 +1,3 @@
-
 import express from 'express';
 import cors from 'cors';
 
@@ -18,9 +17,6 @@ app.post("/sign-up", (req, res) => {
     res.send("OK");            
 });
 
-app.get("/sign-up", (req, res) => {
-    res.send(user);
-})
 
 app.post("/tweets", (req, res) => {
     const name = req.body.username;
