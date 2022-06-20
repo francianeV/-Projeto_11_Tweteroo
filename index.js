@@ -10,6 +10,7 @@ const user = [{username:'Vovó Juju',
 
 
 const tweets = [{username: "Vovó Juju",
+                avatar:'https://pbs.twimg.com/media/FEfsN-aWYAUt3_H.jpg',
                 tweet:"Abacate é tudo de bom 🥑"}]
 
 app.post("/sign-up", (req, res) => {
